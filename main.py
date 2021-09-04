@@ -17,18 +17,18 @@ def Enviar_email():
     """
     timeNow()
     # variavel remetente caso queira digitar seu email no terminal
-    #remetente = input("---Digite o e-mail que voce quer que vá ai: ").lower()
+    #remetente = input("---Digite o e-mail remetente: ").lower()
     msg = email.message.Message()
     msg['Subject'] = 'Assunto'
-    msg['From'] = Emails()
-    msg['To'] = '' #Email remetente ou a variavel remente com valor de entrada
-    password = Senhas() #Função senha que retorna um valor de um Dicionário
+    msg['From'] = Emails() # Função Emails que retorna um valor de um Dicionário
+    msg['To'] = '' # Email remetente ou a variavel remente com valor de entrada
+    password = Senhas() # Função Senhas que retorna um valor de um Dicionário
     msg.add_header('Content-Type', 'text/html')
     msg.set_payload(corpo_email )
 
     s = smtplib.SMTP('smtp.gmail.com: 587')
     s.starttls()
-    # Login]
+    # Login
     barraProgresso()
     s.login(msg['From'], password)
     s.sendmail(msg['From'], [msg['To']], msg.as_string().encode('utf-8'))
